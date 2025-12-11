@@ -9,8 +9,9 @@ using namespace std;
 */
 void lunghezzaStringa(string stringa){
 
-    cout << "Da implementare" << endl;
 
+    int x=stringa.size();
+    cout<<"la lunghezza della stringa e': "<<x<<endl;
 }
 
 /*
@@ -21,8 +22,14 @@ void lunghezzaStringa(string stringa){
 */
 void trovaCiao(string stringa){
 
-    cout << "Da implementare" << endl;
-    
+
+    int z= stringa.find("ciao");
+    if (z==(-1)){
+        cout<<"La parola ciao NON e' presente"<<endl;
+
+    }
+    else
+        cout<<"La parola ciao e' presente"<<endl;
 }
 
 
@@ -31,9 +38,19 @@ void trovaCiao(string stringa){
     TODO: sostituire la parola "pizza" con la parola "pasta" e stampare la nuova stringa
 */
 void sostituisciPizzaConPasta(string stringa){
-    
-    cout << "Da implementare" << endl;
-    
+
+    int y=stringa.find("pizza");
+
+        if(y==(-1))
+            cout<<"pizza non presente"<<endl;
+        else {
+            stringa.replace(y, 5, "pasta" );
+            cout<<y<<endl;
+            cout<<y+5<<endl;
+            cout<<"la frase modificata e': "<<stringa<<endl;
+
+        }
+
 }
 
 
@@ -44,10 +61,11 @@ void sostituisciPizzaConPasta(string stringa){
     HINT: la prima parola termina al primo spazio (trovabile con find())
 */
 void stampaPrimaParola(string stringa){
-    // TODO
+    int k=stringa.find(" ");
+    string s=stringa.substr(0, k);
 
-    cout << "Da implementare" << endl;
-    
+    cout << "La prima parola della frase e': " <<s<< endl;
+
 }
 
 
@@ -57,8 +75,9 @@ void stampaPrimaParola(string stringa){
 */
 void aggiungiGiovanni(string frase){
 
-    cout << "Da implementare" << endl;
-    
+    frase.insert(frase.length(), " Giovanni!");
+    cout << frase<< endl;
+
 }
 
 int main()
@@ -71,11 +90,11 @@ int main()
 
 
     lunghezzaStringa(str);
-    //trovaCiao(str);
-    //sostituisciPizzaConPasta(str);
-    //stampaPrimaParola(str);
-    //aggiungiGiovanni(str);
-    
+    trovaCiao(str);
+    sostituisciPizzaConPasta(str);
+    stampaPrimaParola(str);
+    aggiungiGiovanni(str);
+
 
 
     return 0;
