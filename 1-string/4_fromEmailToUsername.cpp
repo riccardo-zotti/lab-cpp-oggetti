@@ -1,9 +1,11 @@
 #include <iostream>
 #include <string>
-#include <cctype>   // per toupper
-using namespace std;
+#include <cctype> // per toupper
+#include <algorithm> // per find (anche se non strettamente necessario per la soluzione finale)
 
- // numero di email
+using namespace std; // Questa direttiva ci permette di omettere 'std::'
+
+// numero di email
 const int N = 12;
 
 // array di email
@@ -20,18 +22,15 @@ string emails[N] = {
     "elena.sartori@studio.alberghetti.it",
     "gianluca.marini@studio.alberghetti.it",
     "marta.leone@studio.alberghetti.it"
-    };
+};
 
 
-/*
-    TODO: la seguente funzione prende in input una string s minuscola e modifica il primo carattere rendendolo maiuscolo.
-    Esempio: "marco" -> "Marco", "rossi" -> "Rossi"
-
-    Hint: usare la funzione toupper(), vedi funzione minuscolo() in esercizio 3_userGenerator.cpp
-
-*/
+// La funzione usa string e toupper senza ::
 string primoCarattereMaiuscolo(string &s) {
-
+    if (!s.empty()) {
+        s[0] = toupper(s[0]);
+    }
+    return s;
 }
 
 int main() {
@@ -40,19 +39,26 @@ int main() {
     string nomiCognomi[N];
 
 
-
     // ciclo su tutte le email
     for (int i = 0; i < N; i++) {
         string email = emails[i]; //email corrente
 
         //TODO: rimuovere la parte dopo la chiocciola
+        int posChiocciola=email.find('@');
+        string parte=email.substr(0, posChiocciola);
 
         // TODO: spezzare la stringa in due parti diverse: nome e cognome (utilizzare il punto come criterio per separare)
+        int posPunto=parte.find('.');
+        string nome=parte.substr(0, posPunto);
+        string cognome=parte.substr(posPunto + 1);
 
         // TODO: rendere maiuscolo il primo carattere di nome e cognome (usare la funzione primoCarattereMaiuscolo)
+        primoCarattereMaiuscolo(nome);
+        primoCarattereMaiuscolo(cognome);
 
         // TODO: inserire in nomiCognomi[i] l'insieme delle due stringhe (concatenarle con l'operatore +)
-        
+        nomiCognomi[i]=nome+" "+cognome;
+
     }
 
     // stampa il risultato
