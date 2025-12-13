@@ -5,7 +5,7 @@
  *  e implementare le due funzioni usernameGenerator                       *
  **************************************************************************/
 
- #include <iostream>
+#include <iostream>
 #include <string>
 #include <cctype>
 
@@ -25,8 +25,8 @@ string minuscolo(string s){
           prima lettera del nome + tutto il cognome (tutto minuscolo)
 */
 string usernameGenerator(string nome, string cognome){
-    string nc=nome[0]+cognome;
-    return nc;
+    string s=nome[0]+cognome;
+    return minuscolo(s);
 }
 
 /*
@@ -39,18 +39,15 @@ string usernameGenerator(string nome, string cognome){
 
 */
 string usernameGenerator(string nomeCognome){
-    int x=nomeCognome.find(" ");
-    string n=nomeCognome.substr(0, x);
-    string c=nomeCognome.substr(x, nomeCognome.length());
-    cout<< "il nome e': " <<n<< endl;
-    cout<<"il cognome e': "<<c<<endl;
-    return 0;
+    int pos = nomeCognome.find(" ");
+    string nome = nomeCognome.substr(0, pos);
+    string cognome = nomeCognome.substr(pos + 1);
+    return usernameGenerator(nome, cognome);
 }
 
 // main con testing
 int main()
 {
-
     string nome = "Mario";
     string cognome = "Rossi";
 
