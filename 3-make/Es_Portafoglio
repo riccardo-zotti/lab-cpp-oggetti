@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+/***********************************************************************************************************
+ *                                 Modifica della classe studente (costruttore)                            *
+ *     Quando creaimo un oggetto, non è molto comodo chiamare un metodo per ogni attributo da settare      *
+ *     Ha senso creare una funzione che, in un colpo solo, assegna valori a tutti gli attributi            *
+ *     Dato che è una cosa comune a tutte le classi che creiamo,                                           *
+ *     il linguaggio C++ definisce una funzione speciale chiamata "costruttore" per risolvere il problema  *
+ *                                                                                                         */
+
+class Portafoglio {
+private:
+
+    float valore;
+
+public:
+    // Costruttore
+    Portafoglio(float v):
+        valore(v)
+        {}
+
+    Portafoglio(){
+
+    valore=3.00;
+
+    }
+
+
+    void stampaValore(){
+        cout << "Valore: " << valore<< endl;
+    }
+    float aggiorna(float v1, char s){
+        if(s=='+'){
+                valore=valore+v1;
+
+        }else {
+                valore=valore-v1;
+        }
+
+    }
+};
+
+int main()
+{
+    // TODO Istanziare un oggetto tramite il costruttore
+    char s;
+    float v1;
+    Portafoglio P;
+    P.stampaValore();
+    cout<<"Il valore e' positivo o negativo?(-/+)"<<endl;
+    cin>>s;
+    cout<<"Il valore da aggiungere/diminuire?"<<endl;
+    cin>>v1;
+    Portafoglio P1(600.000);
+    P1.stampaValore();
+    cout<<"il valore aggiornato e': "<<P1.aggiorna(v1, s)<<endl;
+    return 0;
+}
