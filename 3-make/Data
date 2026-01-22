@@ -1,0 +1,74 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+/***********************************************************************************************************
+ *                                 Modifica della classe studente (costruttore)                            *
+ *     Quando creaimo un oggetto, non è molto comodo chiamare un metodo per ogni attributo da settare      *
+ *     Ha senso creare una funzione che, in un colpo solo, assegna valori a tutti gli attributi            *
+ *     Dato che è una cosa comune a tutte le classi che creiamo,                                           *
+ *     il linguaggio C++ definisce una funzione speciale chiamata "costruttore" per risolvere il problema  *
+ *                                                                                                         */
+
+class data {
+private:
+
+    int giorno;
+    int mese;
+    int anno;
+public:
+    // Costruttore
+    
+    void setGiorno(int g, int m){
+    if((g<1 || g>30)  && (m==11 || m==4 || m==6 || m==9)){
+        cout<<"Questo giorno (nel mese da te scelto) non esiste!!"<<endl;
+       
+       } 
+    if((g<1 || g>31) && (m==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12)){
+        cout<<"Questo giorno (nel mese da te scelto) non esiste!!"<<endl;
+       
+       } 
+    }
+    if((g<1 || g>28 ) && m==2){
+        cout<<"Questo giorno (nel mese da te scelto) non esiste!!"<<endl;
+        
+    }
+    void setAnno (int a){
+    
+    if (a<0 || a>2026){
+        cout<<"Questo anno non esiste"<<endl;
+        
+        
+    }
+    }
+    void setMese(int m){
+        if(m<1 || m>12){
+            
+            cout<<"Questo anno non esiste"<<endl;
+        }
+    
+    }
+    
+    void stampaData(){
+        cout << "Valore: " << valore<< endl;
+    }
+    
+};
+
+int main()
+{
+    // TODO Istanziare un oggetto tramite il costruttore
+    char s;
+    float v1;
+    Portafoglio P;
+    P.stampaValore();
+    cout<<"Il valore e' positivo o negativo?(-/+)"<<endl;
+    cin>>s;
+    cout<<"Il valore da aggiungere/diminuire?"<<endl;
+    cin>>v1;
+    Portafoglio P1(600.000);
+    P1.stampaValore();
+    cout<<"il valore aggiornato e': "<<P1.aggiorna(v1, s)<<endl;
+    return 0;
+}
