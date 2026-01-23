@@ -3,72 +3,85 @@
 
 using namespace std;
 
-/***********************************************************************************************************
- *                                 Modifica della classe studente (costruttore)                            *
- *     Quando creaimo un oggetto, non è molto comodo chiamare un metodo per ogni attributo da settare      *
- *     Ha senso creare una funzione che, in un colpo solo, assegna valori a tutti gli attributi            *
- *     Dato che è una cosa comune a tutte le classi che creiamo,                                           *
- *     il linguaggio C++ definisce una funzione speciale chiamata "costruttore" per risolvere il problema  *
- *                                                                                                         */
-
-class data {
+class Data {
 private:
-
     int giorno;
     int mese;
     int anno;
-public:
-    // Costruttore
-    
-    void setGiorno(int g, int m){
-    if((g<1 || g>30)  && (m==11 || m==4 || m==6 || m==9)){
-        cout<<"Questo giorno (nel mese da te scelto) non esiste!!"<<endl;
-       
-       } 
-    if((g<1 || g>31) && (m==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12)){
-        cout<<"Questo giorno (nel mese da te scelto) non esiste!!"<<endl;
-       
-       } 
-    }
-    if((g<1 || g>28 ) && m==2){
-        cout<<"Questo giorno (nel mese da te scelto) non esiste!!"<<endl;
-        
-    }
-    void setAnno (int a){
-    
-    if (a<0 || a>2026){
-        cout<<"Questo anno non esiste"<<endl;
-        
-        
-    }
-    }
-    void setMese(int m){
-        if(m<1 || m>12){
-            
-            cout<<"Questo anno non esiste"<<endl;
+
+    bool isGiornoValido(int g, int m) {
+        if (m < 1 || m > 12) return false;
+        if (g < 1) return false;
+        if (m == 11 || m == 4 || m == 6 || m == 9) {
+            return (g <= 30);
+        } else if (m == 2) {
+            return (g <= 28);
+        } else {
+            return (g <= 31);
         }
-    
     }
-    
-    void stampaData(){
-        cout << "Valore: " << valore<< endl;
+
+public:
+    Data() {
+        giorno = 1;
+        mese = 1;
+        anno = 1980;
     }
-    
+
+    Data(int g, int m, int a) {
+        setAnno(a);
+        setMese(m);
+        setGiorno(g, m);
+    }
+
+    void setGiorno(int g, int m) {
+        if (isGiornoValido(g, m)) {
+            giorno = g;
+        } else {
+            cout << "Giorno non valido impostato valore 1" << endl;
+            giorno = 1;
+        }
+    }
+
+    void setMese(int m) {
+        if (m >= 1 && m <= 12) {
+            mese = m;
+        } else {
+            cout << "Mese non valido impostato valore 1" << endl;
+            mese = 1;
+        }
+    }
+
+    void setAnno(int a) {
+        if (a >= 0 && a <= 2026) {
+            anno = a;
+        } else {
+            cout << "Anno non valido impostato valore 2024" << endl;
+            anno = 1980;
+        }
+    }
+
+    void stampaData() {
+        cout << "La data inserita e' " << giorno << "/" << mese << "/" << anno << endl;
+    }
 };
 
-int main()
-{
-    // TODO Istanziare un oggetto tramite il costruttore
-    char s;
-    float v1;
-    Portafoglio P;
-    P.stampaValore();
-    cout<<"Il valore e' positivo o negativo?(-/+)"<<endl;
-    cin>>s;
-    cout<<"Il valore da aggiungere/diminuire?"<<endl;
-    cin>>v1;
-    Portafoglio P1(600.000);
-    P1.stampaValore();
-    cout<<"il valore aggiornato e': "<<P1.aggiorna(v1, s)<<endl;
+int main() {
+    int g, m, a;
+
+    cout << "Inserisci il giorno" << endl;
+    cin >> g;
+
+    cout << "Inserisci il mese" << endl;
+    cin >> m;
+
+    cout << "Inserisci l'anno" << endl;
+    cin >> a;
+
+    // Creazione dell'oggetto con i dati presi da tastiera
+    Data dataUtente(g, m, a);
+    
+    dataUtente.stampaData();
+
     return 0;
 }
